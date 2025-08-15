@@ -17,7 +17,7 @@ class Student {
         this.grade = grade;
     }
     public String toString(Student s){
-        return "name: "+s.Name+" id: "+s.id+" Grade";
+        return "name: "+s.Name+" id: "+s.id+" Grade: "+s.grade;
     }
     public void displayStudents(){
         System.out.println(" ");
