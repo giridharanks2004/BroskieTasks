@@ -16,12 +16,13 @@ class Student {
         this.id = sid;
         this.grade = grade;
     }
+    public String toString(Student s){
+        return "name: "+s.Name+" id: "+s.id+" Grade";
+    }
     public void displayStudents(){
         System.out.println(" ");
         for(Student s : ls){
-            System.out.println("Student Name: "+s.Name);
-            System.out.println("Student id: "+s.id);
-            System.out.println("Student grade: "+s.grade);
+                System.out.println(toString(s));
         }
         System.out.println(" ");
     }
