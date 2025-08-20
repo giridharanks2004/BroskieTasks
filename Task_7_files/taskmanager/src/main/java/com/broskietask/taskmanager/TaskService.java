@@ -21,4 +21,20 @@ public class TaskService {
     public Task getByid(Integer id){
         return taskRepo.findById(id).orElse(null);
     }
+
+    public Task UpdateTask(Task event){
+        if(getByid(event.Id) == null){
+            return null;
+        }
+        return taskRepo.save(event);
+    }
+
+    public void deleteTask(Integer id) throws Exception{
+        Task event = getByid(id);
+        if(event == null){
+            throw new Exception("Task not found");
+        }
+        
+        taskRepo.delete(event);
+    }
 }
