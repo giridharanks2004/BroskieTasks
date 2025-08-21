@@ -9,6 +9,7 @@ import lombok.Data;
 @Table(name = "taskmanager")
 public class Task {
     @Id
+    @GeneratedValue
     Integer Id;
     String Title;
     String Description;
