@@ -20,22 +20,15 @@ async function loadtasks(){
 
 }
 
-async function addTask(id) {
+async function addTask() {
     const title = document.getElementById("task-input").value;
     const description = document.getElementById("task-desc").value;
-    if(typeof id === "undefined"){
-         taskdata = {
+    document.getElementById("task-desc").value="";
+    document.getElementById("task-input").value="";
+     taskdata = {
         "title" : title,
         "description" : description
-        }
-    }else{
-         taskdata = {
-        "id" : id,
-        "title" : title,
-        "description" : description
-        }
     }
-   
     fetch("http://localhost:9090/api/taskmanger/create",{
         method : "POST",
         headers : {
@@ -76,8 +69,40 @@ async function getbyTaskid(id){
             document.getElementById("task-input").value = data.title;
             document.getElementById("task-desc").value = data.description;
             let subbutton = document.getElementById("sub-button");
-            subbutton.setAttribute("onclick",`update()`);
+            subbutton.setAttribute("onclick",`updateTask(${id})`);
     })
     .catch(error => console.log(error));
+}
+
+async function updateTask(id){
+    const title = document.getElementById("task-input").value;
+    const description = document.getElementById("task-desc").value;
+    taskdata = {
+        "id" : id ,
+        "title" : title,
+        "description" : description
+    }
+    fetch("http://localhost:9090/api/taskmanger/update",{
+        method : "PUT",
+        headers : {
+            "Content-Type" : "application/json"
+        },
+        body : JSON.stringify(taskdata)
+    })
+    .then(res => {
+        if(res.ok){
+            loadtasks();
+            console.log("done updating task");
+            window.location.reload(true);
+        }else{
+            addTask();
+        }
+
+    })
+    .catch(error => {
+        console.log(error);
+        
+    });
+
 }
 window.onload = loadtasks;
