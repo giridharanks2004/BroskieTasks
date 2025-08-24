@@ -1,6 +1,4 @@
-Nice 👏 that’s a great project to showcase. A good `README.md` will make it look professional and easy for others to run. Here’s a template tailored to your **Spring Boot + Fetch API frontend + JUnit tests CRUD Task Manager** project:
 
----
 
 # 📌 Task Manager API
 
